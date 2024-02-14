@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;SpringRestProj01-WishMessageGenerator&apos;" deleteContents="true" description="Delete resource &apos;SpringRestProj01-WishMessageGenerator&apos;" element1="/SpringRestProj01-WishMessageGenerator" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1707895996829"/>
+</session>
