@@ -23,7 +23,7 @@ public class UserInfoUserDetailsService implements UserDetailsService {
 		
 	Optional<UserEntity> userInfo=userRepo.findByUsername(username);
 		 return userInfo.map(UserInfoUserDetails::new)
-				 .orElseThrow(()-> new UsernameNotFoundException(username+"user not flound") );
+				 .orElseThrow(()-> new UsernameNotFoundException(username+"user not found") );
 	}
 
 }

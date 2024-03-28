@@ -1,0 +1,62 @@
+# Provider MS  port number
+server:
+  port: 8800
+
+# Provider MS  Application name/Service Instance name (service Id)
+spring:
+  application:
+    name: PLAYER-SERVICE
+
+#datasource cfg
+ # datasource:
+  #  url: jdbc:oracle:thin:@localhost:1521:xe
+  #  username: system
+  #  password: manager
+
+#jpa cfgs
+ # jpa:
+ #   show-sql: true
+   # hibernate.ddl-auto: update
+    
+    
+    #To link  the MS with Configh SErver
+  config:
+   import: ${optional:configserver:}
+
+
+# Provide  serviceId:random number as the instance id
+eureka:
+  instance: 
+    instance-id: ${spring.application.name}:${random.value}
+
+# register  Provider MS  with eureka server
+  client:
+    service-url.default-zone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+# enable  all the actuators
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+
+#To link  MS with  AdminServer
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999/
+
+ 
+ # logging information
+  logging:
+    file:
+     name:team_info.txt
+    logback:
+     rollingpolicy:
+       max-file-size: 5MB
+       clean-history-on-start: true
+    level:
+     root=info
+
