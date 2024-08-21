@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student oredr page</title>
+			<style>
+				form{
+					
+				}
+			</style>
+	</head>
+	<body>
+		<form>
+			<div>
+				<h1>Springboot with Payment Gateway</h1>
+			</div>
+			<div>
+				<label for="name">Enter Name</label>
+				<input type="text" name="name" id="name"/>
+			</div>
+			<div>
+				<label for="email">Enter emailId</label>
+				<input  type="email" name="email" id="email"/>
+			</div>
+			<div>
+				<label for="phNumber">Enter PhNumber</label>
+				<input type="number" name="phNumber" id="phNumber"/>
+			</div>
+			<div>
+				<label>Select course</label>
+				<select value="" id="course">
+					<option>Selecet course</option>
+					<option>java</option>
+					<option>python</option>
+					<option>react</option>
+					<option>springboot</option>
+				</select>
+			</div>
+			<div>
+				<label>Enter Amount</label>
+				<input type="number" name="amount" id="amount"/>
+			</div>
+			<div>
+				<button type="submit" id="btn">Proced to Pay</button>
+			</div>
+		</form>
+		<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+		<script>
+			async function  createOrder(){
+				console.log("<------------order creation started---------->")
+				const response = await fetch("http://localhost:8080/create-order",{
+					method:"POST",
+					headers:{
+					"Content-type":"application/json"
+					},
+					body:JSON.stringify({
+						
+						name:doucment.getElementById("name").value,
+						email:doucment.getElementById("email").value,
+						phNumber:doucment.getElementById("phNumber").value,
+						course:doucment.getElementById("course").value,
+						amount:doucment.getElementById("amount").value,
+						currency:"INR"
+					})
+				});
+				const order = response.json();
+				return order;
+				console.log("<--------- order creation compelted ------->");
+			
+			document.getElementById("btn").onclick = async function(e){
+				const order = await createOrder();
+				console.log(order);
+				e.preventDefault();
+				}
+			
+			var options = {
+				"key":"rzp_test_IWO61GIupBrd41",
+				"amount":order.amount,
+				"currency":order.currency,
+				"name":"ramesh",
+				"description":"buying student online course",
+				"orderId":order.RazorpayOrderId,
+				"receipt":order.email,
+				"callback_url":"http://localhost:8080/handle-payment-callback",
+				"prefill":{
+					"name":order.name,
+					"email":order.email,
+					"contact":order.phNumber
+				},
+				"theme":{
+					color:"#3399cc"
+				}
+			};
+			var rzp1 = new Razorpay(options);
+			rzp1.open();
+			}
+		</script>
+			
+	</body>
+</html>

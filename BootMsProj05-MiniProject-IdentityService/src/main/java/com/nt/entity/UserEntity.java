@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,19 +29,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(name="IPL_USER")
+@Entity
 public class UserEntity implements UserDetails  {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userId;
-	private String username;
+	private String userName;
 	private String password;
 	private String email;
 	private LocalDateTime creted_at;
+	
 	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinTable(name="User_Role" ,joinColumns=@JoinColumn(name="userId"),
 	inverseJoinColumns=@JoinColumn(name="roleId"))
     private List<RoleEntity> roles = new ArrayList<>();
+	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -69,5 +73,10 @@ public class UserEntity implements UserDetails  {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return userName;
 	}
 }

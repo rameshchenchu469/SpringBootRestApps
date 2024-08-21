@@ -12,6 +12,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\DELL\Desktop\projects\KafkaProj01-Producer\src\main\java\com\nt\producer\MessageProducer.java"/>
 			<item value="C:\Users\DELL\Desktop\projects\BootMsProj05-MiniProject-IPLPlayerService-ConsumerMS\src\main\java\com\nt\BootMsProj05MiniProjectIplPlayerServiceConsumerMsApplication.java"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -36,13 +37,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.nt.test"/>
+			<item value="com.nt.consumer"/>
 		</list>
 		<list key="groupId">
 			<item value="nit"/>
 		</list>
 		<list key="artifactId">
-			<item value="JwtAuthentication"/>
+			<item value="KafkaProj01-ConsumerApp"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

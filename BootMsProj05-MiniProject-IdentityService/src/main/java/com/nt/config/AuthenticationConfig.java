@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,6 +32,7 @@ import com.nt.dto.RsaKeyConfigurationProperties;
 import com.nt.service.CustomUserDetailsService;
 
 @Configuration
+//@EnableMethodSecurity
 public class AuthenticationConfig {
 	
 	@Autowired
@@ -51,13 +53,14 @@ public class AuthenticationConfig {
 		 authenticationProvider.setPasswordEncoder(passwordEncoder());
 		 return new ProviderManager(authenticationProvider);
 	}
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http,HandlerMappingIntrospector interceptor)throws Exception{
 		return http
 				.csrf(AbstractHttpConfigurer::disable)
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth->{
-					auth.requestMatchers("user/signup","user/login").permitAll();
+					auth.requestMatchers("user/signup","user/login","test/welcome","test/test1").permitAll();
 				    auth.anyRequest().authenticated();
 				})
 				.sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -68,13 +71,13 @@ public class AuthenticationConfig {
 				
 	}
 	@Bean
-	private JwtDecoder jwtDecoder() {
+	public JwtDecoder jwtDecoder() {
 		return NimbusJwtDecoder.withPublicKey(rsaKeyConfigurationProperties.publicKey()).build();
 		 
 	}
 
 	    @Bean
-	    public JwtEncoder jwtEncoder(){
+	    public  JwtEncoder jwtEncoder(){
 	        JWK jwk = new RSAKey.Builder((rsaKeyConfigurationProperties.publicKey()))
 	                     .privateKey(rsaKeyConfigurationProperties.privateKey()).build();
 	        JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet((jwk)));

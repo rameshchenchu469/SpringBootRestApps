@@ -18,10 +18,10 @@ public class UserInfoUserDetails implements UserDetails {
 	public UserInfoUserDetails(UserEntity user) {
 		username=user.getUsername();
 		password=user.getPassword();
-		authorities=Arrays.stream(user.getRoles().split(","))
-				        .map(SimpleGrantedAuthority::new)
-				        .collect(Collectors.toList());
-		
+//		authorities=Arrays.stream(user.getRoles().split(","))
+//				        .map(SimpleGrantedAuthority::new)
+//				        .collect(Collectors.toList());
+//		
 	}
 	
 	@Override

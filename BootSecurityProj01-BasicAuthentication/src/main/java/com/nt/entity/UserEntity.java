@@ -14,8 +14,13 @@ public class UserEntity   {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String username;
+	private String name;
+	private Long mobileNo;
 	private String email;
+	private String username;
 	private String password;
-    private String roles;
+//	public String getRoles() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

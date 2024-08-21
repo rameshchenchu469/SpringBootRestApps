@@ -13,6 +13,7 @@ import com.nt.service.IUserMgmtService;
 @RestController
 @RequestMapping("/user")
 public class AuthAPI {
+	
 	@Autowired
 	private IUserMgmtService userService;
 	
@@ -23,6 +24,7 @@ public class AuthAPI {
 	}
 	
 	public AuthRequest authenticateUser(@RequestBody  AuthRequest auth) {
+		
 		
 		
 		return auth;

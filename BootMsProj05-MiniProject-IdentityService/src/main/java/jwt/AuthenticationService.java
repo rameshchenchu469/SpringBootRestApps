@@ -4,19 +4,15 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.nt.config.AuthenticationConfig;
 
 @Service
 public class AuthenticationService {
@@ -39,8 +35,8 @@ public class AuthenticationService {
 	                .issuer("self")
 	                .issuedAt(now)
 	                .expiresAt(now.plus(10, ChronoUnit.HOURS))
-	                .subject(authentication.name())
-	                .claim("scope", scope)
+	                .subject(authentication.getName())
+	                .claim("scope",scope)
 	                .build();
 
 	        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
