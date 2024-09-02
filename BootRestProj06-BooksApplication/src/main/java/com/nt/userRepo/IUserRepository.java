@@ -8,6 +8,10 @@ import com.nt.userEntity.UserEntity;
 
 public interface IUserRepository extends CrudRepository<UserEntity,Integer>{
 
-	Optional<UserEntity> findByUsername(String username);
+public 	Optional<UserEntity> findByUsername(String username);
+	
+public UserEntity findUserByUsername(String username);
+
+public UserEntity findUserByName(String name);
 
 }

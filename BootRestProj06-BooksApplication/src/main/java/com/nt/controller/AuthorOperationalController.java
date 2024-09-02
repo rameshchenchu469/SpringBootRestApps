@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nt.authorService.AuthorManagementService;
 import com.nt.entity.Author;
 import com.nt.entity.BookEntity;
-import com.nt.service.AuthorManagementService;
 
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/authors")
 public class AuthorOperationalController{

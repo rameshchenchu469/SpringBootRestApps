@@ -1,4 +1,4 @@
-package com.nt.config;
+package com.nt.securityConfig;
 
 import java.util.Optional;
 

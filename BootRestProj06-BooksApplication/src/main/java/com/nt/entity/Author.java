@@ -28,6 +28,7 @@ public class Author {
 	private Integer age;
 	private String dob;
 	private String authorImage;
+	private String gender;
 	@OneToMany(targetEntity=BookEntity.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinColumn(name="authorId",referencedColumnName="authorId")
 	private List<BookEntity> books;

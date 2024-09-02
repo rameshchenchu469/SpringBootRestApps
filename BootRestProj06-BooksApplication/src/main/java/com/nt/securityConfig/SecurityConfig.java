@@ -1,4 +1,4 @@
-package com.nt.config;
+package com.nt.securityConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,9 +47,9 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/authors/welcome", "authors/register","user/register", "user/login","authors/getAuthors","authors/getAuthorById").permitAll())
+                        .requestMatchers("/authors/welcome", "authors/register","user/register", "user/login","user/refreshToken").permitAll())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/authors/**").authenticated())
+                        .requestMatchers("/authors/**","user/getUser/**").authenticated())
                 .sessionManagement(management -> management
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

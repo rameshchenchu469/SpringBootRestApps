@@ -28,4 +28,6 @@ public class OrderEntity {
 	private LocalDate bookingDate;
 	private LocalTime bookingTime;
 	private Double orderAmount;
+	private String deliveryLocation;
+	private String paymentType;
 }
